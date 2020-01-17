@@ -24,10 +24,10 @@ log = logging.getLogger("model_builder")
 log.setLevel(logging.INFO)
 
 
-from models import c3d_model
-from models import r3d_model
+from lib.models import c3d_model
+from lib.models import r3d_model
 
-from models.loss import loss_creator
+from lib.models.loss import loss_creator
 
 
 video_models = [

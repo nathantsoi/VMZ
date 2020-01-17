@@ -7,11 +7,6 @@
 
 # Build the image (if it exists, on top of the previous one)
 echo "Building docker image..."
-# docker build --build-arg USER=$USER \
-#     --build-arg UID=$UID \
-#     -t vmz:caffe2 \
-#     .
-
 docker build --build-arg USER=$USER \
     --build-arg UID=$UID \
     -t vmz:pytorch-cuda10.1-cudnn7 \
