@@ -1,7 +1,7 @@
 FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04
 
-ARG USER=docker
-ARG UID=1000
+ARG USERNAME=docker
+ARG USERID=1000
 ARG PYTHON_VERSION=2.7
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -129,9 +129,13 @@ ENV PYTHONPATH $PYTHONPATH:/pytorch/build
 
 RUN conda install pandas scikit-learn h5py
 
-RUN adduser --disabled-password --gecos "" --uid ${UID} ${USER}
-USER ${USER}
-ENV HOME /home/${USER}
-WORKDIR /home/${USER}
-RUN mkdir /home/${USER}/VMZ /home/${USER}/epic_kitchens
-ENV PYTHONPATH /home/${USER}/VMZ:$PYTHONPATH
+
+RUN adduser --disabled-password --gecos "" --uid ${USERID} ${USERNAME}
+RUN mkdir -p /app && chown -R ${USERNAME}:${USERNAME} /app
+USER ${USERNAME}
+ENV HOME /app
+ENV DATADIR /app/activity_recognition/data
+WORKDIR /app
+
+
+#ENV PYTHONPATH /home/${USER}/VMZ:$PYTHONPATH

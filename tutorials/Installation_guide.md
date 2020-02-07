@@ -1,9 +1,18 @@
 # Install Caffe2, OpenCV3, FFMPEG
 
+* [Docker](#docker)
 * [CentOS](#centos)  
 * [Ubuntu 16.04 (Test only on CPU)](#ubuntu)
 
 ---
+
+# Docker
+
+Install [yarn](https://classic.yarnpkg.com/en/), [docker](https://www.docker.com/), and [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+Run `yarn build && yarn start` to run the container
+
+Run `yarn shell` to drop into the container (and do this as many times as you want, to open multiple shells)
 
 # CentOS
 ## Install OpenCV 3.4.0

@@ -1,0 +1,18 @@
+{
+  "name": "vmz",
+  "version": "1.0.0",
+  "description": "A wrapper for docker to set env vars and make running easier",
+  "repository": {
+    "url": "https://github.com/nathantsoi/vmz",
+    "type": "git"
+  },
+  "scripts": {
+    "build": "./.build_env && cd ../../ && docker build --build-arg USERNAME=$USERNAME --build-arg USERID=$USERID . -t vmz:pytorch-cuda10.1-cudnn7 -f modules/vmz/docker/Dockerfile",
+    "start": "./.build_env && docker run --runtime=nvidia --rm -v $(pwd)/../..:/app/activity_recognition -v $HOME/.ssh/authorized_keys:/app/.ssh/authorized_keys -v $HOME/.bash_history:/app/.bash_history -it -d --name=arecog -p 4444:2222 -p 6011:6009 vmz:pytorch-cuda10.1-cudnn7 ",
+    "stop": "docker stop $(docker container ls -q --filter name=arecog*)",
+    "restart": "yarn stop; yarn start",
+    "shell": "docker exec -it $(docker container ls -q --filter name=arecog*) /bin/bash"
+  },
+  "author": "Nathan Tsoi <nathan.tsoi@yale.edu>",
+  "license": "MIT"
+}
